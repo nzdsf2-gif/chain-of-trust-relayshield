@@ -74,13 +74,11 @@ class ThreatScreener:
         Returns:
             ScreeningResult with verdict, confidence, and indicators
         """
-        payload = {"agent_id": agent_id}
-        if agent_card:
-            payload["agent_card"] = agent_card
-        if domain:
-            payload["domain"] = domain
+        # Agent IDs in Chain of Trust are domain-based (ANS).
+        # Use explicit domain if given, otherwise treat agent_id as domain.
+        check_domain = domain or agent_id
 
-        resp = self._post("/v1/metered/domain", payload)
+        resp = self._post("/v1/metered/domain", {"domain": check_domain})
         return self._parse_result(resp, agent_id)
 
     def screen_domain(self, domain: str) -> ScreeningResult:
