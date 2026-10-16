@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chain-of-trust-relayshield"
+version = "0.1.0"
+description = "RelayShield threat-intelligence screening for the Chain of Trust reference architecture"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "Apache-2.0"}
+authors = [{name = "RelayShield"}]
+keywords = ["ai-agents", "trust", "threat-intelligence", "chain-of-trust"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+
+[project.urls]
+Homepage = "https://github.com/nzdsf2-gif/chain-of-trust-relayshield"
+Repository = "https://github.com/nzdsf2-gif/chain-of-trust-relayshield"
+
+[tool.setuptools.packages.find]
+where = ["src"]
