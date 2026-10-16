@@ -46,7 +46,7 @@ class ThreatScreener:
             data=data,
             headers={
                 "Content-Type": "application/json",
-                "X-API-Key": self.api_key,
+                "X-RS-API-KEY": self.api_key,
                 "User-Agent": "chain-of-trust-relayshield/0.1.0",
             },
             method="POST",
@@ -80,7 +80,7 @@ class ThreatScreener:
         if domain:
             payload["domain"] = domain
 
-        resp = self._post("/v1/screen/agent", payload)
+        resp = self._post("/v1/metered/domain", payload)
         return self._parse_result(resp, agent_id)
 
     def screen_domain(self, domain: str) -> ScreeningResult:
@@ -88,7 +88,7 @@ class ThreatScreener:
         Screen a domain against the threat corpus.
         Useful during Chain of Trust discovery phase.
         """
-        resp = self._post("/v1/screen/domain", {"domain": domain})
+        resp = self._post("/v1/metered/domain", {"domain": domain})
         return self._parse_result(resp, domain)
 
     def _parse_result(self, resp: dict, subject: str) -> ScreeningResult:
